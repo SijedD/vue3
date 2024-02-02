@@ -31,12 +31,28 @@ new Vue({
         removeCard(card){
             this.column1.splice(this.column1.indexOf(card), 1);
         },
-        render(){
-
+        render(card){
+            this.title = ''
+            this.title.removeAttribute()
         },
 
         move2(card){
             this.column1.splice(this.column1.indexOf(card), 1);
+            this.column2.push(card);
+        },
+
+        move3(card){
+            this.column2.splice(this.column2.indexOf(card), 1);
+            this.column3.push(card);
+        },
+
+        move4(card){
+            this.column3.splice(this.column3.indexOf(card), 1);
+            this.column4.push(card);
+        },
+
+        remove3(card){
+            this.column3.splice(this.column3.indexOf(card), 1);
             this.column2.push(card);
         }
 

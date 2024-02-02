@@ -1,0 +1,24 @@
+.column {
+    width: 25%;
+    float: left;
+    padding: 10px;
+    box-sizing: border-box;
+    background: #F5F5DC;
+}
+.card {
+    background: forestgreen;
+    border: 10px solid #FFE4C4;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+.completed {
+    background-color: #F5F5DC;
+    text-decoration: line-through;
+}
+
+.Form1{
+    padding: 10px;
+    text-align: center;
+    background: forestgreen;
+    height: 110px;
+}

@@ -12,4 +12,79 @@
 <body>
 <div id="app">
 
+
+
+                <form class="Form1" @submit.prevent="addCard">
+                    <label for="card-title">Заголовок:</label>
+                    <input id="card-title" type="text" v-model="newCardTitle"><br>
+                    <label for="card-desc">Описание:</label>
+                    <textarea id="card-desc"  v-model="newCardDesc"></textarea><br>
+                    <label for="deadline">Срок сдачи:</label>
+                    <input type="date" id="deadline" v-model="deadline" name="deadline-task" min="2024-01-01" max="2025-12-31" required /><br>
+                    <button type="submit">Добавить карточку</button>
+                </form>
+
+
+
+
+    <div class="column">
+        <h2>Запланированные задачи</h2>
+        <div v-for="card in column1" :key="card.id" class="card">
+            <h3>Заголовок: {{ card.title }}</h3>
+            <h3>Дата завершения: {{ card.deadline }}</h3>
+            <h3>Описание: {{ card.description }}</h3>
+            <ul>
+
+            </ul>
+            Дата создания: {{ card.completedDate }}
+        </div>
+
+    </div>
+    <div class="column">
+        <h2>Задачи в работе</h2>
+        <div v-for="card in column2" :key="card.id" class="card">
+            <h3>{{ card.title }}</h3>
+            <ul>
+                <li v-for="item in card.items" :key="item.id">
+                    <input type="checkbox" v-model="item.completed" @change="handleCardPosition(card)">
+                    <label :class="{ completed: item.completed }">{{ item.text }}</label>
+                </li>
+            </ul>
+            Последнее выполнение: {{ card.completedDate }}
+        </div>
+    </div>
+    <div class="column">
+        <h2>Тестирование</h2>
+        <div v-for="card in column3" :key="card.id" class="card">
+            <h3>{{ card.title }}</h3>
+            <ul>
+                <li v-for="item in card.items" :key="item.id">
+                    <input type="checkbox" v-model="item.completed">
+                    <span :class="{ completed: item.completed }">{{ item.text}}</span>
+                </li>
+            </ul>
+            Последнее выполнение: {{ card.completedDate }}
+        </div>
+
+    </div>
+    <div class="column">
+        <h2>Выполненные задачи</h2>
+        <div v-for="card in column3" :key="card.id" class="card">
+            <h3>{{ card.title }}</h3>
+            <ul>
+                <li v-for="item in card.items" :key="item.id">
+                    <input type="checkbox" v-model="item.completed">
+                    <span :class="{ completed: item.completed }">{{ item.text}}</span>
+                </li>
+            </ul>
+
+                Последнее выполнение: {{ card.completedDate }}
+
+        </div>
+
+    </div>
 </div>
+
+</body>
+
+</html>

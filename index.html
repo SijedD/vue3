@@ -12,15 +12,13 @@
 <body>
 <div id="app">
 
-
-
                 <form class="Form1" @submit.prevent="addCard">
                     <label for="card-title">Заголовок:</label>
                     <input id="card-title" type="text" v-model="newCardTitle"><br>
                     <label for="card-desc">Описание:</label>
                     <textarea id="card-desc"  v-model="newCardDesc"></textarea><br>
                     <label for="deadline">Срок сдачи:</label>
-                    <input type="date" id="deadline" v-model="deadline" name="deadline-task" min="2024-01-01" max="2025-12-31" required /><br>
+                    <input type="date" id="deadline" v-model="deadline" name="deadline-task"  required /><br>
                     <button type="submit">Добавить карточку</button>
                 </form>
 
@@ -31,26 +29,23 @@
         <h2>Запланированные задачи</h2>
         <div v-for="card in column1" :key="card.id" class="card">
             <h3>Заголовок: {{ card.title }}</h3>
-            <h3>Дата завершения: {{ card.deadline }}</h3>
             <h3>Описание: {{ card.description }}</h3>
-            <ul>
-
-            </ul>
+            <h3>Дата завершения: {{ card.deadline }}</h3>
             Дата создания: {{ card.completedDate }}
+            <button  v-on:click="removeCard(card)">Удалить</button>
+            <button  v-on:click="move2(card)">Отправить в работу</button>
         </div>
 
     </div>
     <div class="column">
         <h2>Задачи в работе</h2>
         <div v-for="card in column2" :key="card.id" class="card">
-            <h3>{{ card.title }}</h3>
-            <ul>
-                <li v-for="item in card.items" :key="item.id">
-                    <input type="checkbox" v-model="item.completed" @change="handleCardPosition(card)">
-                    <label :class="{ completed: item.completed }">{{ item.text }}</label>
-                </li>
-            </ul>
-            Последнее выполнение: {{ card.completedDate }}
+            <h3>Заголовок: {{ card.title }}</h3>
+            <h3>Описание: {{ card.description }}</h3>
+            <h3>Дата завершения: {{ card.deadline }}</h3>
+            Дата создания: {{ card.completedDate }}
+            <button  v-on:click="removeCard(card)">Удалить</button>
+            <button  v-on:click="move2(card)">Отправить в работу</button>
         </div>
     </div>
     <div class="column">
@@ -79,7 +74,6 @@
             </ul>
 
                 Последнее выполнение: {{ card.completedDate }}
-
         </div>
 
     </div>

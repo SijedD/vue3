@@ -19,14 +19,26 @@ new Vue({
                 id: Date.now(),
                 title: this.newCardTitle,
                 description: this.newCardDesc,
-                deadline: this.deadline,}
+                deadline: this.deadline}
             this.column1.push(newCard);
             this.newCardDesc = '';
             this.newCardTitle = '';
             this.newItemText = '';
             this.deadline = '';
             newCard.completedDate = new Date().toLocaleString(); // добавляем дату и время завершения
-            }
+            },
+
+        removeCard(card){
+            this.column1.splice(this.column1.indexOf(card), 1);
+        },
+        render(){
+
+        },
+
+        move2(card){
+            this.column1.splice(this.column1.indexOf(card), 1);
+            this.column2.push(card);
+        }
 
         }
 

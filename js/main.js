@@ -10,7 +10,8 @@ new Vue({
             newItemText: '',
             newCardDesc: '',
             deadline: '',
-            dopdesc: ''
+            dopdesc: '',
+            timeout: ''
 
         }
     },
@@ -21,7 +22,8 @@ new Vue({
                 title: this.newCardTitle,
                 description: this.newCardDesc,
                 deadline: this.deadline,
-                dopdesc: this.dopdesc}
+                dopdesc: this.dopdesc,
+                timeout: this.timeout}
             this.column1.push(newCard);
             this.newCardDesc = '';
             this.newCardTitle = '';
@@ -51,6 +53,11 @@ new Vue({
         move4(card){
             this.column3.splice(this.column3.indexOf(card), 1);
             this.column4.push(card);
+            if (card.deadline >= card.completedDate){
+                card.timeout = 'В срок'
+            }else {
+                card.timeout = 'Просроченно'
+            }
         },
 
         remove3(card){

@@ -45,6 +45,7 @@
             <h3>Описание: {{ card.description }}</h3>
             <h3>Дата завершения: {{ card.deadline }}</h3>
             Дата создания: {{ card.completedDate }}
+            <h3>Исправления: {{card.dopdesc}}</h3>
             <button  v-on:click="move3(card)">Отправить на тестирование</button>
         </div>
     </div>
@@ -56,8 +57,10 @@
             <h3>Дата завершения: {{ card.deadline }}</h3>
             Дата создания: {{ card.completedDate }}
             <button  v-on:click="move4(card)">Отправить в Выполненые задачи</button>
-            <button  v-on:click="remove3(card)">Вернуть в работу</button>
-
+            <form>
+            <button  v-on:click="remove3(card)":disabled="card.dopdesc === ''">Вернуть в работу</button>
+            <input  type="text" v-model="card.dopdesc">
+            </form>
         </div>
 
     </div>

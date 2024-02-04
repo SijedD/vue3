@@ -11,7 +11,10 @@ new Vue({
             newCardDesc: '',
             deadline: '',
             dopdesc: '',
-            timeout: ''
+            timeout: '',
+            edited: '',
+            editedDescription:'',
+            editedDeadline: ''
 
         }
     },
@@ -23,7 +26,8 @@ new Vue({
                 description: this.newCardDesc,
                 deadline: this.deadline,
                 dopdesc: this.dopdesc,
-                timeout: this.timeout}
+                timeout: this.timeout,
+                edited: false}
             this.column1.push(newCard);
             this.newCardDesc = '';
             this.newCardTitle = '';
@@ -35,9 +39,17 @@ new Vue({
         removeCard(card){
             this.column1.splice(this.column1.indexOf(card), 1);
         },
-        render(card){
-            this.title = ''
-            this.title.removeAttribute()
+
+        editTasks(card) {
+            card.edited = true;
+        },
+        saveEditedTask(card,text,date){
+            card.description=text
+            card.deadline=date
+            card.editedData =new Date().toLocaleString()
+            this.editedDeadline=''
+            this.editedDescription=''
+            card.edited = false
         },
 
         move2(card){
@@ -53,8 +65,10 @@ new Vue({
         move4(card){
             this.column3.splice(this.column3.indexOf(card), 1);
             this.column4.push(card);
-            if (card.deadline >= card.completedDate){
-                card.timeout = 'В срок'
+            let dateNow= new Date().getTime();
+            let dateCompleted=new Date(card.deadline).getTime()
+            if (dateCompleted >=dateNow){
+                card.timeout = 'Выполнено в срок'
             }else {
                 card.timeout = 'Просроченно'
             }
